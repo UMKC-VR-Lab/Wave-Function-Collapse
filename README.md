@@ -1,2 +1,2 @@
-# Constraint-Satisfaction-Problem-Solver
- 
+# Wave Function Collapse
+
