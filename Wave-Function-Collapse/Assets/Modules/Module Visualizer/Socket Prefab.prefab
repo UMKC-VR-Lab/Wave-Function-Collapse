@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9002340052111728907}
+  - component: {fileID: 1103582260265732017}
   - component: {fileID: 1194804755521989925}
   m_Layer: 0
   m_Name: Socket Prefab
@@ -38,6 +39,19 @@ Transform:
   - {fileID: 5699593193340803368}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1103582260265732017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2540385453893353113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e2cbf143ed99704b967debc8f2b5e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moduleData: {fileID: 11400000, guid: e600f5a5601ca5749939f8c9e05dd0ce, type: 2}
 --- !u!114 &1194804755521989925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,6 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 971852eb31d90ae439fd742294d2ea36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  possibilitySpace: {fileID: 1103582260265732017}
   textMeshProUGUIs:
   - {fileID: 2187656018743835080}
   - {fileID: 6634508371381976208}
@@ -57,7 +72,6 @@ MonoBehaviour:
   - {fileID: 8571618995471162975}
   - {fileID: 8267606429698971202}
   - {fileID: 1834205185834935848}
-  moduleData: {fileID: 11400000, guid: e600f5a5601ca5749939f8c9e05dd0ce, type: 2}
 --- !u!1 &2896122161103014098
 GameObject:
   m_ObjectHideFlags: 0

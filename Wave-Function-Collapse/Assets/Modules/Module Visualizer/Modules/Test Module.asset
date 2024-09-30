@@ -19,9 +19,9 @@ MonoBehaviour:
   right: Right
   front: Front
   back: Back
-  isTopSymmetrical: 1
-  isBottomSymmetrical: 1
-  isLeftSymmetrical: 1
-  isRightSymmetrical: 1
-  isFrontSymmetrical: 1
+  isTopSymmetrical: 0
+  isBottomSymmetrical: 0
+  isLeftSymmetrical: 0
+  isRightSymmetrical: 0
+  isFrontSymmetrical: 0
   isBackSymmetrical: 0
