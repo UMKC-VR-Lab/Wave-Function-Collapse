@@ -1,22 +1,22 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Module Data", menuName = "Wave Function Collapse/Module Data")]
-public class ModuleData : ScriptableObject
+namespace WaveFunctionCollapse 
 {
-    // Module sides
-    public string moduleName;
-    public string top;
-    public string bottom;
-    public string left;
-    public string right;
-    public string front;
-    public string back;
+    public enum Direction { North, South, East, West, Top, Bottom }
 
-    // Whether the sides are symmetrical or not
-    public bool isTopSymmetrical;
-    public bool isBottomSymmetrical;
-    public bool isLeftSymmetrical;
-    public bool isRightSymmetrical;
-    public bool isFrontSymmetrical;
-    public bool isBackSymmetrical;
+    [CreateAssetMenu(fileName = "New Module Data", menuName = "Wave Function Collapse/Module Data")]
+    public class ModuleData : ScriptableObject
+    {
+        public string moduleName;
+        public List<ModuleData> compositionModules;
+        public Face north, south, west, east, top, bottom;
+    }
+
+    [Serializable]
+    public class Face
+    {
+        public List<FaceAttribute> Properties;
+    }
 }

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dce6932c11125c41af055a263800fdc, type: 3}
+  m_Name: 5 Path X
+  m_EditorClassIdentifier: 
+  moduleName: Empty
+  compositionModules: []
+  north:
+    Properties:
+    - {fileID: 11400000, guid: b4bbd06a369c5c14daa2acadad59bd72, type: 2}
+  south:
+    Properties:
+    - {fileID: 11400000, guid: b4bbd06a369c5c14daa2acadad59bd72, type: 2}
+  west:
+    Properties:
+    - {fileID: 11400000, guid: b4bbd06a369c5c14daa2acadad59bd72, type: 2}
+  east:
+    Properties:
+    - {fileID: 11400000, guid: b4bbd06a369c5c14daa2acadad59bd72, type: 2}
+  top:
+    Properties: []
+  bottom:
+    Properties: []

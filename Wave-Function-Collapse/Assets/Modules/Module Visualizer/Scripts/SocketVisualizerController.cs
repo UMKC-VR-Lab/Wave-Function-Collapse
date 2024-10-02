@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using WaveFunctionCollapse;
 using UnityEngine;
 using TMPro;
 
@@ -26,12 +27,13 @@ public class SocketVisualizerController : MonoBehaviour
             return;
         }
 
-        // Display the module data along with the "S" if symmetrical
+        /* Display the module data along with the "S" if symmetrical
         textMeshProUGUIs[0].text = $"Left: {possibilitySpace.moduleData.left}" + (possibilitySpace.moduleData.isLeftSymmetrical ? " S" : "");
         textMeshProUGUIs[1].text = $"Right: {possibilitySpace.moduleData.right}" + (possibilitySpace.moduleData.isRightSymmetrical ? " S" : "");
         textMeshProUGUIs[2].text = $"Front: {possibilitySpace.moduleData.front}" + (possibilitySpace.moduleData.isFrontSymmetrical ? " S" : "");
         textMeshProUGUIs[3].text = $"Back: {possibilitySpace.moduleData.back}" + (possibilitySpace.moduleData.isBackSymmetrical ? " S" : "");
         textMeshProUGUIs[4].text = $"Top: {possibilitySpace.moduleData.top}" + (possibilitySpace.moduleData.isTopSymmetrical ? " S" : "");
         textMeshProUGUIs[5].text = $"Bottom: {possibilitySpace.moduleData.bottom}" + (possibilitySpace.moduleData.isBottomSymmetrical ? " S" : "");
+        */
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1103582260265732017}
   - component: {fileID: 1194804755521989925}
   m_Layer: 0
-  m_Name: Socket Prefab
+  m_Name: PS Visualizer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
