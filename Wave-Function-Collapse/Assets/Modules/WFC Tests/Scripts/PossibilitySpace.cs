@@ -6,6 +6,9 @@ public class PossibilitySpace : MonoBehaviour
 {
     // If the cell has been collapsed, store the module data in it
     public ModuleData moduleData;
+
+    // Reference to the visualizer
+    public ModuleVisualizer moduleVisual;
     
     // The radius it will check for when finding neighbors
     public float maxNeighborDistance = 10.0f;
@@ -39,5 +42,10 @@ public class PossibilitySpace : MonoBehaviour
             }
         }
         return result;
+    }
+
+    public void Collapse(ModuleData newModule)
+    {
+        moduleData = newModule;
     }
 }

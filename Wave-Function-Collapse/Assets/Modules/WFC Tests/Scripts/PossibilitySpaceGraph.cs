@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using Unity.VisualScripting;
 
 namespace WaveFunctionCollapse
 {
@@ -15,6 +16,8 @@ namespace WaveFunctionCollapse
     {
         // A link to all of the valid modules
         public List<GameObject> modules;
+        
+        public ModuleData testData;
 
         // Maps from a position to a list of adjacent nodes
         public Dictionary<Vector3Int, List<PossibilitySpace>> adjacencyGraph;
@@ -23,6 +26,8 @@ namespace WaveFunctionCollapse
         // Prefab for possibility spaces
         public GameObject possibilitySpacePrefab;
 
+        // Collapse variables
+        public float stepTime = 0.1f;
 
         // Test in start
         private void Start()
@@ -33,6 +38,29 @@ namespace WaveFunctionCollapse
             GenerateRectangularVolume(Vector3.zero, 4, 2, 5);
             FindNeighbors();
             DebugAdjacencyGraph();
+            StartCoroutine(Collapse());
+        }
+
+        // Collapse the graph of possibility spaces
+        private IEnumerator Collapse()
+        {
+            int i = 0;
+            while(i < possibilitySpaces.Count)
+            {
+                yield return new WaitForSeconds(stepTime);
+                
+                PossibilitySpace lowEntropyPS = GetPossibilitySpaceOfLowestEntropy();
+                GameObject newModule = Instantiate(testData.gameObject, lowEntropyPS.gameObject.transform.position, Quaternion.identity, lowEntropyPS.gameObject.transform);
+                lowEntropyPS.moduleData = newModule.GetComponent<ModuleData>();
+                lowEntropyPS.moduleData = testData;
+                lowEntropyPS.moduleVisual = newModule.GetComponent<ModuleVisualizer>();
+                lowEntropyPS.moduleVisual.DisplayModuleData();
+            }
+        }
+
+        private PossibilitySpace GetPossibilitySpaceOfLowestEntropy()
+        {
+            return possibilitySpaces[Random.Range(0, possibilitySpaces.Count)];
         }
 
         // Link up the graph (very expensive operation)
@@ -72,7 +100,7 @@ namespace WaveFunctionCollapse
                             continue;
                         
                         // If it isn't in the graph, add it     
-                        GameObject newObject = Instantiate(modules[Random.Range(0, modules.Count)], offset + index, Quaternion.identity, transform);
+                        GameObject newObject = Instantiate(possibilitySpacePrefab, offset + index, Quaternion.identity, transform);
                         possibilitySpaces.Add(newObject.GetComponent<PossibilitySpace>());
                     }
                 }
