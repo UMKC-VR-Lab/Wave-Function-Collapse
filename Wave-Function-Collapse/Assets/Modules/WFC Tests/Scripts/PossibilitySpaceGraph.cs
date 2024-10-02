@@ -27,7 +27,6 @@ namespace WaveFunctionCollapse
         // Test in start
         private void Start()
         {
-            modules = new();
             adjacencyGraph = new();
             possibilitySpaces = new();
             
@@ -73,7 +72,7 @@ namespace WaveFunctionCollapse
                             continue;
                         
                         // If it isn't in the graph, add it     
-                        GameObject newObject = Instantiate(possibilitySpacePrefab, offset + index, Quaternion.identity, transform);
+                        GameObject newObject = Instantiate(modules[Random.Range(0, modules.Count)], offset + index, Quaternion.identity, transform);
                         possibilitySpaces.Add(newObject.GetComponent<PossibilitySpace>());
                     }
                 }
