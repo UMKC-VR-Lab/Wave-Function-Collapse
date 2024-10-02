@@ -1,0 +1,9 @@
+
+Create a visual by invoking 
+PossibilitySpaceVisualizer.Visualize(   Vector3 position, 
+                                        GameObject blockPrefab, 
+                                        GameObject invalidBlockPrefab, 
+                                        int totalPossibilities, 
+                                        int validPossibilities)
+
+
