@@ -29,6 +29,7 @@ public class PossibilitySpace : MonoBehaviour
         childModule = newModule.GetComponent<ModuleData>();
         // Display the module data
         moduleVisualizer.DisplayModuleData(childModule);
+        Debug.Log("Collapsing: " + gameObject.name);
     }
     
     // Calculate entropy

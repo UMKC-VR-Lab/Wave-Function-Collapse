@@ -44,23 +44,28 @@ namespace WaveFunctionCollapse
         // Collapse the graph of possibility spaces
         private IEnumerator Collapse()
         {
-            int i = 0;
-            while(i < possibilitySpaces.Count)
+            for(int i = 0; i < possibilitySpaces.Count; i++)
             {
-                yield return new WaitForSeconds(stepTime);
-                
                 PossibilitySpace lowEntropyPS = GetPossibilitySpaceOfLowestEntropy();
                 
                 // Start the coroutine to collapse the cell and await its completion before continuing execution
-                yield return StartCoroutine(lowEntropyPS.Collapse());
+                if(lowEntropyPS == null)
+                {
+                    Debug.Log(i);
+                }
+                else
+                {
+                    yield return StartCoroutine(lowEntropyPS.Collapse());
+                }
             }
         }
 
         private PossibilitySpace GetPossibilitySpaceOfLowestEntropy()
         {
             return possibilitySpaces
+                .Where(ps => ps.childModule == null) // Filter out PossibilitySpaces with a non-null childModule
                 .OrderBy(ps => ps.CalculateEntropy(modules.Count))
-                .First();
+                .FirstOrDefault(); // Use FirstOrDefault to safely return null if no valid spaces found
         }
 
         // Link up the graph (very expensive operation)
@@ -101,6 +106,7 @@ namespace WaveFunctionCollapse
                         
                         // If it isn't in the graph, add it     
                         GameObject newObject = Instantiate(possibilitySpacePrefab, offset + index, Quaternion.identity, transform);
+                        newObject.name = x.ToString() + " " + y.ToString() + " " + z.ToString();
                         PossibilitySpace newObjectPS = newObject.GetComponent<PossibilitySpace>();
                         possibilitySpaces.Add(newObjectPS);
                         newObjectPS.validModules = new List<GameObject>(modules);
