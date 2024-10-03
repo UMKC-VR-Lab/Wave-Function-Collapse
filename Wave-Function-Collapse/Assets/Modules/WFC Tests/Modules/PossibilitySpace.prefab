@@ -1324,7 +1324,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5907835419914252552}
   - component: {fileID: 3631568694311174353}
-  - component: {fileID: 2799874647718379274}
   m_Layer: 6
   m_Name: PossibilitySpace
   m_TagString: Untagged
@@ -1365,32 +1364,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e2cbf143ed99704b967debc8f2b5e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moduleData: {fileID: 11400000, guid: aa7ac790bc3a3364b91fb6c48fd30ac2, type: 2}
+  module: {fileID: 0}
   maxNeighborDistance: 10
   possibilitySpaceLayer:
     serializedVersion: 2
     m_Bits: 64
-  invalidModulesIndices: []
---- !u!114 &2799874647718379274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8486331475845483589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 971852eb31d90ae439fd742294d2ea36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  possibilitySpace: {fileID: 3631568694311174353}
-  textMeshProUGUIs:
-  - {fileID: 2986410283994822776}
-  - {fileID: 7533812983172821965}
-  - {fileID: 4371640702713414215}
-  - {fileID: 2779977989594461488}
-  - {fileID: 916375608766101470}
-  - {fileID: 2229706864693380391}
+  validModules: []
 --- !u!1 &9041883789993881680
 GameObject:
   m_ObjectHideFlags: 0

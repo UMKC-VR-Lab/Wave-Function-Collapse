@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
-using Unity.VisualScripting;
+using System.Linq;
 
 namespace WaveFunctionCollapse
 {
@@ -38,7 +38,7 @@ namespace WaveFunctionCollapse
             GenerateRectangularVolume(Vector3.zero, 4, 2, 5);
             FindNeighbors();
             DebugAdjacencyGraph();
-            StartCoroutine(Collapse());
+            // StartCoroutine(Collapse());
         }
 
         // Collapse the graph of possibility spaces
@@ -50,17 +50,17 @@ namespace WaveFunctionCollapse
                 yield return new WaitForSeconds(stepTime);
                 
                 PossibilitySpace lowEntropyPS = GetPossibilitySpaceOfLowestEntropy();
-                GameObject newModule = Instantiate(testData.gameObject, lowEntropyPS.gameObject.transform.position, Quaternion.identity, lowEntropyPS.gameObject.transform);
-                lowEntropyPS.moduleData = newModule.GetComponent<ModuleData>();
-                lowEntropyPS.moduleData = testData;
-                lowEntropyPS.moduleVisual = newModule.GetComponent<ModuleVisualizer>();
-                lowEntropyPS.moduleVisual.DisplayModuleData();
+                
+                // Start the coroutine to collapse the cell and await its completion before continuing execution
+                yield return StartCoroutine(lowEntropyPS.Collapse());
             }
         }
 
         private PossibilitySpace GetPossibilitySpaceOfLowestEntropy()
         {
-            return possibilitySpaces[Random.Range(0, possibilitySpaces.Count)];
+            return possibilitySpaces
+                .OrderBy(ps => ps.CalculateEntropy(modules.Count))
+                .First();
         }
 
         // Link up the graph (very expensive operation)
@@ -70,7 +70,7 @@ namespace WaveFunctionCollapse
         {
             for(int i = 0; i < possibilitySpaces.Count; i++)
             {
-                List<PossibilitySpace> newNeighbors = possibilitySpaces[i].GetNeighbors();
+                List<PossibilitySpace> newNeighbors = possibilitySpaces[i].FindNeighbors();
                 Vector3Int psPosition = Vector3Int.zero;
                 psPosition.x = (int)possibilitySpaces[i].transform.position.x;
                 psPosition.y = (int)possibilitySpaces[i].transform.position.y;

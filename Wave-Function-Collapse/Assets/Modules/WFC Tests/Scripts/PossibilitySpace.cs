@@ -1,14 +1,12 @@
 using System.Collections.Generic;
 using WaveFunctionCollapse;
 using UnityEngine;
+using System.Collections;
 
 public class PossibilitySpace : MonoBehaviour
 {
-    // If the cell has been collapsed, store the module data in it
-    public ModuleData moduleData;
-
     // Reference to the visualizer
-    public ModuleVisualizer moduleVisual;
+    public ModuleVisualizer module;
     
     // The radius it will check for when finding neighbors
     public float maxNeighborDistance = 10.0f;
@@ -17,16 +15,24 @@ public class PossibilitySpace : MonoBehaviour
     public LayerMask possibilitySpaceLayer;
 
     // If the cell has constraints propagated to it
-    public List<ModuleData> invalidModulesIndices;
+    public List<GameObject> validModules;
 
+    // Called to collapse this cell and propagate constraints
+    public IEnumerator Collapse()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        // Choose a valid module at random and instantiate it
+    }
+    
     // Calculate entropy
     public float CalculateEntropy(int numberOfPossibleModules)
     {
-        return 1.0f - (((float)invalidModulesIndices.Count) / ((float)numberOfPossibleModules));
+        return (float)validModules.Count / ((float)numberOfPossibleModules);
     }
 
     // Find adjacent neighbors
-    public List<PossibilitySpace> GetNeighbors()
+    public List<PossibilitySpace> FindNeighbors()
     {
         List<PossibilitySpace> result = new();
 
@@ -42,10 +48,5 @@ public class PossibilitySpace : MonoBehaviour
             }
         }
         return result;
-    }
-
-    public void Collapse(ModuleData newModule)
-    {
-        moduleData = newModule;
     }
 }
