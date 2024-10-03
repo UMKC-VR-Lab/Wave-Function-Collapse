@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using WaveFunctionCollapse;
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class PossibilitySpace : MonoBehaviour
 {
     // Reference to the visualizer
-    public ModuleVisualizer module;
-    
+    public ModuleData childModule;
+    public ModuleVisualizer moduleVisualizer;
+
     // The radius it will check for when finding neighbors
     public float maxNeighborDistance = 10.0f;
 
@@ -23,6 +24,11 @@ public class PossibilitySpace : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
         // Choose a valid module at random and instantiate it
+        GameObject newModule = Instantiate(validModules[Random.Range(0, validModules.Count)], transform);
+        // Store the reference to the module data
+        childModule = newModule.GetComponent<ModuleData>();
+        // Display the module data
+        moduleVisualizer.DisplayModuleData(childModule);
     }
     
     // Calculate entropy

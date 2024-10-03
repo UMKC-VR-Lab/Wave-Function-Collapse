@@ -38,7 +38,7 @@ namespace WaveFunctionCollapse
             GenerateRectangularVolume(Vector3.zero, 4, 2, 5);
             FindNeighbors();
             DebugAdjacencyGraph();
-            // StartCoroutine(Collapse());
+            StartCoroutine(Collapse());
         }
 
         // Collapse the graph of possibility spaces
@@ -101,7 +101,9 @@ namespace WaveFunctionCollapse
                         
                         // If it isn't in the graph, add it     
                         GameObject newObject = Instantiate(possibilitySpacePrefab, offset + index, Quaternion.identity, transform);
-                        possibilitySpaces.Add(newObject.GetComponent<PossibilitySpace>());
+                        PossibilitySpace newObjectPS = newObject.GetComponent<PossibilitySpace>();
+                        possibilitySpaces.Add(newObjectPS);
+                        newObjectPS.validModules = new List<GameObject>(modules);
                     }
                 }
             }
