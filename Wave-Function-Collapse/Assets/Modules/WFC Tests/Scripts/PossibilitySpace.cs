@@ -30,6 +30,8 @@ public class PossibilitySpace : MonoBehaviour
         // Display the module data
         moduleVisualizer.DisplayModuleData(childModule);
         Debug.Log("Collapsing: " + gameObject.name);
+
+        // Propagate constraints to neighbors and have them do the same
     }
     
     // Calculate entropy

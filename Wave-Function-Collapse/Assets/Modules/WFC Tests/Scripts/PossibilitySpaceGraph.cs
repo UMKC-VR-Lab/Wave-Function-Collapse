@@ -62,10 +62,24 @@ namespace WaveFunctionCollapse
 
         private PossibilitySpace GetPossibilitySpaceOfLowestEntropy()
         {
-            return possibilitySpaces
-                .Where(ps => ps.childModule == null) // Filter out PossibilitySpaces with a non-null childModule
-                .OrderBy(ps => ps.CalculateEntropy(modules.Count))
-                .FirstOrDefault(); // Use FirstOrDefault to safely return null if no valid spaces found
+            // Filter out PossibilitySpaces with a non-null childModule
+            var availableSpaces = possibilitySpaces
+                .Where(ps => ps.childModule == null);
+
+            // Group by entropy and find the minimum entropy
+            var groupedByEntropy = availableSpaces
+                .GroupBy(ps => ps.CalculateEntropy(modules.Count))
+                .OrderBy(g => g.Key) // Order by the entropy value
+                .FirstOrDefault(); // Get the group with the lowest entropy
+
+            // If a group exists, select a random PossibilitySpace from that group
+            if (groupedByEntropy != null)
+            {
+                var possibilities = groupedByEntropy.ToList();
+                return possibilities[Random.Range(0, possibilities.Count)];
+            }
+
+            return null; // Return null if no valid spaces found
         }
 
         // Link up the graph (very expensive operation)
